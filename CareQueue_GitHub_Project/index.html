@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A simple hospital queue management system demonstrating the FIFO queue data structure." />
+  <title>CareQueue | Hospital Queue Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">+</div>
+    <div>
+      <p class="eyebrow">PATIENT FLOW MADE SIMPLE</p>
+      <h1>CareQueue</h1>
+    </div>
+    <span class="status-pill"><span class="status-dot"></span> Queue system active</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">HOSPITAL OUTPATIENTS</p>
+        <h2>Keep every visit<br /><span>moving in order.</span></h2>
+        <p class="intro-copy">Register patients, view the waiting line, and call the next patient. CareQueue demonstrates the First-In, First-Out (FIFO) principle of a queue data structure.</p>
+      </div>
+      <div class="fifo-card">
+        <div class="fifo-icon">FIFO</div>
+        <div><strong>First in, first out</strong><p>The earliest registered patient is served first.</p></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Queue statistics">
+      <article class="stat-card"><span class="stat-label">Waiting patients</span><strong id="waitingCount">0</strong><span class="stat-foot">In the queue right now</span></article>
+      <article class="stat-card"><span class="stat-label">Patients served</span><strong id="servedCount">0</strong><span class="stat-foot">Completed calls this session</span></article>
+      <article class="stat-card"><span class="stat-label">Next ticket</span><strong id="nextTicket">—</strong><span class="stat-foot">First patient in line</span></article>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel register-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">NEW REGISTRATION</p><h3>Add a patient</h3></div>
+          <span class="step-badge">01</span>
+        </div>
+        <form id="patientForm">
+          <label for="patientName">Patient full name</label>
+          <input id="patientName" name="patientName" type="text" maxlength="70" placeholder="e.g. Ama Mensah" required />
+          <label for="department">Department</label>
+          <select id="department" name="department">
+            <option>General Outpatient</option>
+            <option>Paediatrics</option>
+            <option>Dental Clinic</option>
+            <option>Eye Clinic</option>
+            <option>Laboratory</option>
+            <option>Pharmacy</option>
+          </select>
+          <button class="button button-primary" type="submit">＋ Register patient</button>
+          <p class="form-note">A ticket number is assigned automatically.</p>
+        </form>
+        <div class="call-next">
+          <div><p class="eyebrow">SERVICE DESK</p><h3>Ready for the next patient?</h3><p id="nextPatientSummary">No patients are waiting yet.</p></div>
+          <button id="callNextBtn" class="button button-dark" type="button" disabled>Call next →</button>
+        </div>
+        <div class="last-called" id="lastCalled" aria-live="polite">No patient has been called yet.</div>
+      </section>
+
+      <section class="panel queue-panel">
+        <div class="panel-heading queue-heading">
+          <div><p class="eyebrow">LIVE WAITING LINE</p><h3>Patients in queue <span id="queueHeadingCount" class="count-badge">0</span></h3></div>
+          <button id="demoBtn" class="button button-quiet" type="button">Load demo</button>
+        </div>
+        <div id="queueList" class="queue-list">
+          <div class="empty-state"><div class="empty-icon">☷</div><strong>Your queue is empty</strong><p>Register a patient to start the waiting line.</p></div>
+        </div>
+        <div class="queue-footer">
+          <span><span class="legend-dot"></span> Waiting</span>
+          <button id="clearBtn" class="text-button" type="button">Clear queue</button>
+        </div>
+      </section>
+    </div>
+    <p class="privacy-note">Demo application for educational purposes. Do not enter real patient medical or confidential information.</p>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
